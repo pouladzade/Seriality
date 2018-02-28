@@ -1,9 +1,52 @@
 pragma solidity ^0.4.19;
 
-import"./TypesToBytes.sol";
+/**
+ * @title BytesToTypes
+ * @dev The BytesToTypes library converts the memory byte arrays to the standard solidity types
+ * @author pouladzade@gmail.com
+ */
 
-contract BytesToTypes is TypesToBytes {
+library BytesToTypes {
     
+    function bytesToAddress(uint _offst, bytes _input) public pure returns (address _output) {
+        
+        assembly {
+            _output := mload(add(_input, _offst))
+        }
+    } 
+    
+    function bytesToBool(uint _offst, bytes _input) public pure returns (bool _output) {
+        
+        uint8 x;
+        assembly {
+            x := mload(add(_input, _offst))
+        }
+        x==0 ? _output = false : _output = true;
+    }   
+    
+    function bytesToString(uint _offst, bytes memory _input, bytes memory _output) public  {
+
+        uint size = 32;
+        assembly {
+            let loop_index:= 0
+                  
+            let chunk_count
+            
+            mstore(size,mload(add(_input,_offst)))
+            chunk_count := add(div(size,32),1) // chunk_count = size/32 + 1
+            jumpi(loop , iszero(mod(size,32))) // if size%32 == 0
+            chunk_count := add(chunk_count,1)  // chunk_count++
+            
+            loop:
+                mstore(add(_output,mul(loop_index,32)),mload(add(_input,_offst)))
+                _offst := sub(_offst,32)           // _offst -= 32
+                loop_index := add(loop_index,1)
+                
+            jumpi(loop , lt(loop_index , chunk_count))
+            
+        }
+    }
+
     function bytesToInt8(uint _offst, bytes _input) public pure returns (int8 _output) {
         
         assembly {
@@ -452,43 +495,4 @@ contract BytesToTypes is TypesToBytes {
         }
     } 
     
-    function bytesToAddress(uint _offst, bytes _input) public pure returns (address _output) {
-        
-        assembly {
-            _output := mload(add(_input, _offst))
-        }
-    } 
-    
-    function bytesToBool(uint _offst, bytes _input) public pure returns (bool _output) {
-        
-        uint8 x;
-        assembly {
-            x := mload(add(_input, _offst))
-        }
-        x==0 ? _output = false : _output = true;
-    } 
-    
-    
-    function bytesToString(uint _offst, bytes memory _input, bytes memory _output) public  {
-
-        uint size = 32;
-        assembly {
-            let loop_index:= 0
-                  
-            let chunk_count
-            
-            mstore(size,mload(add(_input,_offst)))
-            chunk_count := add(div(size,32),1) // chunk_count = size/32 + 1
-            jumpi(loop , iszero(mod(size,32))) // if size%32 == 0
-            chunk_count := add(chunk_count,1)  // chunk_count++
-            
-            loop:
-                mstore(add(_output,mul(loop_index,32)),mload(add(_input,_offst)))
-                _offst := sub(_offst,32)           // _offst -= 32
-                loop_index := add(loop_index,1)
-                
-            jumpi(loop , lt(loop_index , chunk_count))
-            
-        }
-    }
 }
