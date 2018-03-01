@@ -6,7 +6,7 @@ pragma solidity ^0.4.19;
  * @author pouladzade@gmail.com
  */
 
-library BytesToTypes {
+contract BytesToTypes {
     
     function bytesToAddress(uint _offst, bytes _input) public pure returns (address _output) {
         
@@ -24,7 +24,7 @@ library BytesToTypes {
         x==0 ? _output = false : _output = true;
     }   
     
-    function bytesToString(uint _offst, bytes memory _input, bytes memory _output) public  {
+    function bytesToString(uint _offst, bytes _input, bytes _output) public pure {
 
         uint size = 32;
         assembly {
