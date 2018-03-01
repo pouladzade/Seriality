@@ -6,7 +6,7 @@ pragma solidity ^0.4.16;
  * @author pouladzade@gmail.com
  */
 
-library SizeOf {
+contract SizeOf {
     
     function sizeOfString(string _in) public pure returns(uint _size){
         _size = bytes(_in).length / 32;
