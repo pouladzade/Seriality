@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.16;
 
 import "./BytesToTypes.sol";
 import "./TypesToBytes.sol";
