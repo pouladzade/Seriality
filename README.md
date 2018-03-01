@@ -1,2 +1,5 @@
-# Seriality
-Seriality is a mixture of libraries for serializing and de-serializing all the Solidity type in a very efficient way which mostli written in solidity-assembly
+## Seriality
+
+Seriality is a mixture of libraries for serializing and de-serializing all the Solidity types in a very efficient way which mostly written in solidity-assembly
+
+---
