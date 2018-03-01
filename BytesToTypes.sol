@@ -24,7 +24,7 @@ contract BytesToTypes {
         x==0 ? _output = false : _output = true;
     }   
     
-    function bytesToString(uint _offst, bytes _input, bytes _output) public pure {
+    function bytesToString(uint _offst, bytes _input, bytes _output) public {
 
         uint size = 32;
         assembly {
