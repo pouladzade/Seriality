@@ -6,7 +6,7 @@ pragma solidity ^0.4.19;
  * @author pouladzade@gmail.com
  */
 
-library TypesToBytes {
+contract TypesToBytes {
  
     function addressToBytes(uint _offst, address _input, bytes _output) public pure {
 
@@ -22,7 +22,7 @@ library TypesToBytes {
         }
     }
     
-    function stringToBytes(uint _offst, bytes memory _input, bytes memory _output) public  {
+    function stringToBytes(uint _offst, bytes _input, bytes _output) public  {
         uint256 stack_size = _input.length / 32;
         if(_input.length % 32 > 0) stack_size++;
         
