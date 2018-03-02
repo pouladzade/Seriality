@@ -4,7 +4,7 @@ import "./BytesToTypes.sol";
 import "./TypesToBytes.sol";
 import "./SizeOf.sol";
 
-contract Seriality is BytesToTypes, TypesToBytes {
+contract Seriality is BytesToTypes, TypesToBytes, SizeOf {
 
     function seriality() public {
 
