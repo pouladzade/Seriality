@@ -74,8 +74,5 @@ contract StringsReturn is Seriality {
         stringToBytes(offset, bytes(out5), buffer);
         
         return buffer_size;
-
-    }
-    
-
+    }    
 }

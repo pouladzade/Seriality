@@ -180,3 +180,116 @@ output buffer :
     "5": "string: n5 Bia inja dahan service"
 
 ```
+
+
+
+
+
+
+
+
+
+#### Serializing strings and passing to another function
+
+```js
+
+pragma solidity ^0.4.16;
+
+import "./Seriality.sol";
+
+contract StringsReturn is Seriality {
+  
+    function stringCaller() public returns(  string memory out1,
+                                            string memory out2,
+                                            string memory out3,
+                                            string memory out4,
+                                            string memory out5)
+                                            {
+        
+        bytes memory buffer = new bytes(320);
+        uint offset = stringCallee(buffer);
+        
+        //deserializing
+        out1 = new string (getStringSize(offset, buffer));
+        bytesToString(offset, buffer, bytes(out1));
+        offset -= sizeOfString(out1);
+        
+        out2 = new string (getStringSize(offset, buffer));
+        bytesToString(offset, buffer, bytes(out2));
+        offset -= sizeOfString(out2);
+        
+        out3 = new string (getStringSize(offset, buffer));
+        bytesToString(offset, buffer, bytes(out3));
+        offset -= sizeOfString(out3);
+        
+        out4 = new string (getStringSize(offset, buffer));
+        bytesToString(offset, buffer, bytes(out4));
+        offset -= sizeOfString(out4);
+        
+        out5 = new string (getStringSize(offset, buffer));
+        bytesToString(offset, buffer, bytes(out5));
+      
+    }
+    
+    function stringCallee(bytes memory buffer) public returns (uint buffer_size) {
+    
+        string memory out1  = new string(32); 
+        string memory out2  = new string(32);        
+        string memory out3  = new string(32);
+        string memory out4  = new string(32);        
+        string memory out5  = new string(32);
+        
+        out1 = "Come on baby lets dance!";
+        out2 = "May I buy you a drink?";
+        out3 = "I am an itinerant programmer";
+        out4 = "Inam javab lashi!";
+        out5 = "Bia inja dahan service";
+
+        // Serializing
+        buffer_size = sizeOfString(out5) +
+                       sizeOfString(out4) + 
+                       sizeOfString(out3) + 
+                       sizeOfString(out2) +
+                       sizeOfString(out1);
+                           
+        uint offset = buffer_size;
+
+        stringToBytes(offset, bytes(out1), buffer);
+        offset -= sizeOfString(out1); 
+        
+        stringToBytes(offset, bytes(out2), buffer);
+        offset -= sizeOfString(out2);
+
+        stringToBytes(offset, bytes(out3), buffer);
+        offset -= sizeOfString(out3); 
+        
+        stringToBytes(offset, bytes(out4), buffer);
+        offset -= sizeOfString(out4); 
+        
+        stringToBytes(offset, bytes(out5), buffer);
+        
+        return buffer_size;
+    }    
+}
+```
+```
+output buffer :
+
+   [42696120696e6a6120646168616e207365727669636500000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000016
+    496e616d206a61766162206c6173686921000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000011
+    4920616d20616e206974696e6572616e742070726f6772616d6d657200000000
+    000000000000000000000000000000000000000000000000000000000000001c
+    4d617920492062757920796f752061206472696e6b3f00000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000016
+    436f6d65206f6e2062616279206c6574732064616e6365210000000000000000
+    0000000000000000000000000000000000000000000000000000000000000018]
+
+	"0": "string: out1 Come on baby lets dance!",
+	"1": "string: out2 May I buy you a drink?",
+	"2": "string: out3 I am an itinerant programmer",
+	"3": "string: out4 Inam javab lashi!",
+	"4": "string: out5 Bia inja dahan service"
+```
+
