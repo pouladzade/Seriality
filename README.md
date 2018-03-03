@@ -3,7 +3,7 @@
 Seriality is a mixture of libraries for serializing and de-serializing all the Solidity types in a very efficient way which mostly written in solidity-assembly
 
 ---
-####Important points you need to know befor using this library:
+#### Important points you need to know befor using this library:
 
 * Seiality supports all the solidity types.
 * Please be aware that this library is written with assembly and could be unsafe, so use it if you really know what you are doing and how you should use the library.
@@ -15,7 +15,7 @@ Seriality is a mixture of libraries for serializing and de-serializing all the S
 * You can use the SizeOf library independently to get the size of your variables.
 
 
-####Example :
+#### Example :
 
 ```js
 
@@ -92,7 +92,7 @@ contract SerialitySample is Seriality {
 "6": "address: 	n6 0x1cb5cf010e407afc6249627bfd769d82d8dbbf71"
 ```
 
-####Serializing types including example :
+#### Serializing types including example :
 ```js
 pragma solidity ^0.4.16;
 
