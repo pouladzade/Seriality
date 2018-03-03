@@ -5,7 +5,7 @@ Seriality is a library for serializing and de-serializing all the Solidity types
 ---
 #### Important points you need to know befor using this library:
 
-* Seiality supports all the solidity types.
+* Seriality supports all the solidity types.
 * Please be aware that this library is written with assembly and could be unsafe, so use it if you really know what you are doing and how you should use the library.
 
 * The buffer size must be chosen very carefully, if you are not sure about that choose your biggest guess.
