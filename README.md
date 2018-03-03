@@ -165,7 +165,6 @@ contract SerialitySample is Seriality {
 
 ```
 
-
 ```js
 output buffer :
 
