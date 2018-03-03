@@ -92,7 +92,7 @@ contract SerialitySample is Seriality {
 "6": "address: 	n6 0x1cb5cf010e407afc6249627bfd769d82d8dbbf71"
 ```
 
-#### Serializing types including example :
+#### Serializing types including string example :
 ```js
 pragma solidity ^0.4.16;
 
