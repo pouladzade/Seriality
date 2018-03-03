@@ -5,9 +5,9 @@ import "./Seriality.sol";
 
 contract SerialitySample is Seriality {
 
-    function testSample1() public returns(int n1, int8 n2, uint24 n3, string n4,string n5) {
+    function testSample1() public returns(int n1, int8 n2, uint24 n3, string n4, string n5) {
         
-        bytes memory buffer = new  bytes(200);
+        bytes memory buffer = new bytes(200);
         string memory out4  = new string(32);        
         string memory out5  = new string(32);
         n4 = new string(32);
@@ -35,6 +35,7 @@ contract SerialitySample is Seriality {
 
         intToBytes(offset, out1, buffer);
         offset -= sizeOfInt(256);
+        
         // Deserializing
         offset = 200; 
             
@@ -51,6 +52,7 @@ contract SerialitySample is Seriality {
         offset -= sizeOfString(out4);
 
         n1 = bytesToInt256(offset, buffer);
+
     }
     
     function testSample2() public returns(int8 n1, int24 n2, uint32 n3, int128 n4, address n5, address n6) {
@@ -102,5 +104,6 @@ contract SerialitySample is Seriality {
         offset -= sizeOfAddress();
         
         n6 = bytesToAddress(offset, buffer);
+
     }
 }

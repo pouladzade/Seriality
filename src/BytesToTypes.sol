@@ -24,7 +24,21 @@ contract BytesToTypes {
         }
         x==0 ? _output = false : _output = true;
     }   
-    
+        
+    function getStringSize(uint _offst, bytes memory _input) public returns(uint size){
+        
+        assembly{
+            
+            size := mload(add(_input,_offst))
+            let chunk_count := add(div(size,32),1) // chunk_count = size/32 + 1
+            
+            if gt(mod(size,32),0) // if size%32 > 0
+                {chunk_count := add(chunk_count,1)} 
+            
+             size := mul(chunk_count,32)// first 32 bytes reseves for size in strings
+        }
+    }
+
     function bytesToString(uint _offst, bytes memory _input, bytes memory _output) public  {
 
         uint size = 32;
