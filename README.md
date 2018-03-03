@@ -19,7 +19,7 @@ Seriality is a library for serializing and de-serializing all the Solidity types
 
 #### What kind of problems can be addressed by Seriality?
 
-* By means of Seriality you can easily serialize and deserialize your variables, structs, arrays,tuples,... and pass them through the contracts and libraries.
+* By means of Seriality you can easily serialize and deserialize your variables, structs, arrays, tuples, ... and pass them through the contracts and libraries.
 
 * You can decouple your contract from libraries by serializing parameters into a byte array.
 
@@ -88,8 +88,8 @@ contract SerialitySample is Seriality {
 
     output buffer:
     
-"	1cb5cf010e407afc6249627bfd769d82d8dbbf7115b7926835a7c2fd6d297e3a
-	decc5b45f7309f59fffffffffffffffffffffff5a6e798e413de43550cccccf4"
+	1cb5cf010e407afc6249627bfd769d82d8dbbf7115b7926835a7c2fd6d297e3a
+	decc5b45f7309f59fffffffffffffffffffffff5a6e798e413de43550cccccf4
 
 
     "1": "int8: 	n1 -12",
@@ -168,12 +168,12 @@ contract SerialitySample is Seriality {
 ```js
 output buffer :
 
-"   00000000000000000000000000000000000000000000000000000000020d949d
+    00000000000000000000000000000000000000000000000000000000020d949d
     436f7079206b6f6e206c61736869000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000000e
     42696120696e6a6120646168616e207365727669636500000000000000000000
     0000000000000000000000000000000000000000000000000000000000000016
-    012b0157"
+    012b0157
 
 
     "1": "int256: n1 34444445"
