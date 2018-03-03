@@ -6,9 +6,9 @@ pragma solidity ^0.4.16;
  * @author pouladzade@gmail.com
  */
 
-contract SizeOf {
+contract  SizeOf {
     
-    function sizeOfString(string _in) public pure returns(uint _size){
+    function sizeOfString(string _in) public  returns(uint _size){
         _size = bytes(_in).length / 32;
          if(bytes(_in).length % 32 != 0) 
             _size++;
@@ -16,268 +16,57 @@ contract SizeOf {
         _size++; // first 32 bytes is reserved for the size of the string     
         _size *= 32;
     }
-    
-    function sizeOfInt8() public pure returns(uint8){
-        return 1; 
+
+    function sizeOfInt(uint16 _postfix) public  returns(uint size){
+
+        assembly{
+            switch _postfix
+                case 8 { size := 1 }
+                case 16 { size := 2 }
+                case 24 { size := 3 }
+                case 32 { size := 4 }
+                case 40 { size := 5 }
+                case 48 { size := 6 }
+                case 56 { size := 7 }
+                case 64 { size := 8 }
+                case 72 { size := 9 }
+                case 80 { size := 10 }
+                case 88 { size := 11 }
+                case 96 { size := 12 }
+                case 104 { size := 13 }
+                case 112 { size := 14 }
+                case 120 { size := 15 }
+                case 128 { size := 16 }
+                case 136 { size := 17 }
+                case 144 { size := 18 }
+                case 152 { size := 19 }
+                case 160 { size := 20 }
+                case 168 { size := 21 }
+                case 176 { size := 22 }
+                case 184 { size := 23 }
+                case 192 { size := 24 }
+                case 200 { size := 25 }
+                case 208 { size := 26 }
+                case 216 { size := 27 }
+                case 224 { size := 28 }
+                case 232 { size := 29 }
+                case 240 { size := 30 }
+                case 248 { size := 31 }
+                case 256 { size := 32 }
+                default  { size := 32 }
+        }
+
     }
     
-    function sizeOfUint8() public pure returns(uint8){
-        return 1; 
+    function sizeOfUint(uint16 _postfix) public  returns(uint size){
+        return sizeOfInt(_postfix);
     }
-    
-    function sizeOfInt16() public pure returns(uint8){
-        return 2; 
-    }
-    
-    function sizeOfUint16() public pure returns(uint8){
-        return 2; 
-    }
-    
-    function sizeOfInt24() public pure returns(uint8){
-        return 3; 
-    }
-    
-    function sizeOfUint24() public pure returns(uint8){
-        return 3; 
-    }
-    
-    function sizeOfInt32() public pure returns(uint8){
-        return 4; 
-    }
-    
-    function sizeOfUint32() public pure returns(uint8){
-        return 4; 
-    }
-    
-    function sizeOfInt40() public pure returns(uint8){
-        return 5; 
-    }
-    
-    function sizeOfUint40() public pure returns(uint8){
-        return 5; 
-    }
-    
-    function sizeOfInt48() public pure returns(uint8){
-        return 6; 
-    }
-    
-    function sizeOfUint48() public pure returns(uint8){
-        return 6; 
-    }
-    
-    function sizeOfInt56() public pure returns(uint8){
-        return 7; 
-    }
-    
-    function sizeOfUint56() public pure returns(uint8){
-        return 7; 
-    }
-    
-    function sizeOfInt64() public pure returns(uint8){
-        return 8; 
-    }
-    
-    function sizeOfUint64() public pure returns(uint8){
-        return 8; 
-    }
-    
-    function sizeOfInt72() public pure returns(uint8){
-        return 9; 
-    }
-    
-    function sizeOfUint72() public pure returns(uint8){
-        return 9; 
-    }
-    
-    function sizeOfInt80() public pure returns(uint8){
-        return 10; 
-    }
-    
-    function sizeOfUint80() public pure returns(uint8){
-        return 10; 
-    }
-    
-    function sizeOfInt88() public pure returns(uint8){
-        return 11; 
-    }
-    
-    function sizeOfUint88() public pure returns(uint8){
-        return 11; 
-    }
-    
-    function sizeOfInt96() public pure returns(uint8){
-        return 12; 
-    }
-    
-    function sizeOfUint96() public pure returns(uint8){
-        return 12; 
-    }
-    
-    function sizeOfInt104() public pure returns(uint8){
-        return 13; 
-    }
-    
-    function sizeOfUint104() public pure returns(uint8){
-        return 13; 
-    }
-    
-    function sizeOfInt112() public pure returns(uint8){
-        return 14; 
-    }
-    
-    function sizeOfUint112() public pure returns(uint8){
-        return 14; 
-    }
-    
-    function sizeOfInt120() public pure returns(uint8){
-        return 15; 
-    }
-    
-    function sizeOfUint120() public pure returns(uint8){
-        return 15; 
-    }
-    
-    function sizeOfInt128() public pure returns(uint8){
-        return 16; 
-    }
-    
-    function sizeOfUint128() public pure returns(uint8){
-        return 16; 
-    }
-    
-    function sizeOfInt136() public pure returns(uint8){
-        return 17; 
-    }
-    
-    function sizeOfUint136() public pure returns(uint8){
-        return 17; 
-    }
-    
-    function sizeOfInt144() public pure returns(uint8){
-        return 18; 
-    }
-    
-    function sizeOfUint144() public pure returns(uint8){
-        return 18; 
-    }
-    
-    function sizeOfInt152() public pure returns(uint8){
-        return 19; 
-    }
-    
-    function sizeOfUint152() public pure returns(uint8){
-        return 19; 
-    }
-    
-    function sizeOfInt160() public pure returns(uint8){
+
+    function sizeOfAddress() public  returns(uint8){
         return 20; 
     }
     
-    function sizeOfUint160() public pure returns(uint8){
-        return 20; 
-    }
-    
-    function sizeOfInt168() public pure returns(uint8){
-        return 21; 
-    }
-    
-    function sizeOfUint168() public pure returns(uint8){
-        return 21; 
-    }
-    
-    function sizeOfInt176() public pure returns(uint8){
-        return 22; 
-    }
-    
-    function sizeOfUint176() public pure returns(uint8){
-        return 22; 
-    }
-    
-    function sizeOfInt184() public pure returns(uint8){
-        return 23; 
-    }
-    
-    function sizeOfUint184() public pure returns(uint8){
-        return 23; 
-    }
-    
-    function sizeOfInt192() public pure returns(uint8){
-        return 24; 
-    }
-    
-    function sizeOfUint192() public pure returns(uint8){
-        return 24; 
-    }
-    
-    function sizeOfInt200() public pure returns(uint8){
-        return 25; 
-    }
-    
-    function sizeOfUint200() public pure returns(uint8){
-        return 25; 
-    }
-    
-    function sizeOfInt208() public pure returns(uint8){
-        return 26; 
-    }
-    
-    function sizeOfUint208() public pure returns(uint8){
-        return 26; 
-    }
-    
-    function sizeOfInt216() public pure returns(uint8){
-        return 27; 
-    }
-    
-    function sizeOfUint216() public pure returns(uint8){
-        return 27; 
-    }
-    
-    function sizeOfInt224() public pure returns(uint8){
-        return 28; 
-    }
-    
-    function sizeOfUint224() public pure returns(uint8){
-        return 28; 
-    }
-    
-    function sizeOfInt232() public pure returns(uint8){
-        return 29; 
-    }
-    
-    function sizeOfUint232() public pure returns(uint8){
-        return 29; 
-    }
-    
-    function sizeOfInt240() public pure returns(uint8){
-        return 30; 
-    }
-    
-    function sizeOfUint240() public pure returns(uint8){
-        return 30; 
-    }
-    
-    function sizeOfInt248() public pure returns(uint8){
-        return 31; 
-    }
-    
-    function sizeOfUint248() public pure returns(uint8){
-        return 31; 
-    }
-    
-    function sizeOfInt256() public pure returns(uint8){
-        return 32; 
-    }
-    
-    function sizeOfUint256() public pure returns(uint8){
-        return 32; 
-    }
-    
-    function sizeOfAddress() public pure returns(uint8){
-        return 20; 
-    }
-    
-    function sizeOfBool() public pure returns(uint8){
+    function sizeOfBool() public  returns(uint8){
         return 1; 
     }
     
