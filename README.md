@@ -19,6 +19,8 @@ Seriality is a library for serializing and de-serializing all the Solidity types
 
 #### What kind of problems can be addressed by Seriality?
 
+(Proposal if the solidity allows passing dynamically sized type through contracts and libraries)
+
 * By means of Seriality you can easily serialize and deserialize your variables, structs, arrays, tuples, ... and pass them through the contracts and libraries.
 
 * You can decouple your contract from libraries by serializing parameters into a byte array.
