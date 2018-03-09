@@ -8,7 +8,7 @@ pragma solidity ^0.4.16;
 
 contract  SizeOf {
     
-    function sizeOfString(string _in) public  returns(uint _size){
+    function sizeOfString(string _in) internal pure  returns(uint _size){
         _size = bytes(_in).length / 32;
          if(bytes(_in).length % 32 != 0) 
             _size++;
@@ -17,7 +17,7 @@ contract  SizeOf {
         _size *= 32;
     }
 
-    function sizeOfInt(uint16 _postfix) public  returns(uint size){
+    function sizeOfInt(uint16 _postfix) internal pure  returns(uint size){
 
         assembly{
             switch _postfix
@@ -58,15 +58,15 @@ contract  SizeOf {
 
     }
     
-    function sizeOfUint(uint16 _postfix) public  returns(uint size){
+    function sizeOfUint(uint16 _postfix) internal pure  returns(uint size){
         return sizeOfInt(_postfix);
     }
 
-    function sizeOfAddress() public  returns(uint8){
+    function sizeOfAddress() internal pure  returns(uint8){
         return 20; 
     }
     
-    function sizeOfBool() public  returns(uint8){
+    function sizeOfBool() internal pure  returns(uint8){
         return 1; 
     }
     
