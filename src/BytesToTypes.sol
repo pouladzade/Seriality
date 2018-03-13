@@ -32,8 +32,9 @@ contract BytesToTypes {
             size := mload(add(_input,_offst))
             let chunk_count := add(div(size,32),1) // chunk_count = size/32 + 1
             
-            if gt(mod(size,32),0) // if size%32 > 0
-                {chunk_count := add(chunk_count,1)} 
+            if gt(mod(size,32),0) {// if size%32 > 0
+                chunk_count := add(chunk_count,1)
+            } 
             
              size := mul(chunk_count,32)// first 32 bytes reseves for size in strings
         }
@@ -47,10 +48,13 @@ contract BytesToTypes {
                   
             let chunk_count
             
-            mstore(size,mload(add(_input,_offst)))
+            size := mload(add(_input,_offst))
             chunk_count := add(div(size,32),1) // chunk_count = size/32 + 1
-            jumpi(loop , iszero(mod(size,32))) // if size%32 == 0
-            chunk_count := add(chunk_count,1)  // chunk_count++
+            
+            if gt(mod(size,32),0) {
+                chunk_count := add(chunk_count,1)  // chunk_count++
+            }
+                
             
             loop:
                 mstore(add(_output,mul(loop_index,32)),mload(add(_input,_offst)))
