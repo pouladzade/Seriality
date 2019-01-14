@@ -298,3 +298,6 @@ output buffer :
 	"4": "string: out5 Bia inja dahan service"
 ```
 
+There is also an article in Hacker Noon written by Vasa which explains how you can use seriality for your project.
+https://hackernoon.com/serializing-string-arrays-in-solidity-db4b6037e520
+Thanks to Vasa!
