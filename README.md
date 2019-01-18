@@ -31,20 +31,72 @@ Seriality is a library for serializing and de-serializing all the Solidity types
 
 ```js
 
-pragma solidity ^0.4.16;
+pragma solidity ^0.5.0;
 
-import "./Seriality.sol";
+import {Seriality} from "./Seriality.sol";
+
 
 contract SerialitySample is Seriality {
-    function testSample2() public returns(int8 n1, int24 n2, uint32 n3, int128 n4, address n5, address n6) {
+
+    function testSample1() public pure returns(int n1, int8 n2, uint24 n3, string memory n4, string memory n5) {
+        
+        bytes memory buffer = new bytes(200);
+        string memory out4  = new string(32);        
+        string memory out5  = new string(32);
+        n4 = new string(32);
+        n5 = new string(32);
+        int     out1 = 34444445;
+        int8    out2 = 87;
+        uint24  out3 = 76545;
+        out4 = "Copy kon lashi";
+        out5 = "Bia inja dahan service";
+
+        // Serializing
+        uint offset = 200;
+
+        intToBytes(offset, out2, buffer);
+        offset -= sizeOfInt(8);
+
+        uintToBytes(offset, out3, buffer);
+        offset -= sizeOfUint(24);
+
+        stringToBytes(offset, bytes(out5), buffer);
+        offset -= sizeOfString(out5);
+
+        stringToBytes(offset, bytes(out4), buffer);
+        offset -= sizeOfString(out4);       
+
+        intToBytes(offset, out1, buffer);
+        offset -= sizeOfInt(256);
+        
+        // Deserializing
+        offset = 200; 
+            
+        n2 = bytesToInt8(offset, buffer);
+        offset -= sizeOfInt(8);
+
+        n3 = bytesToUint24(offset, buffer);
+        offset -= sizeOfUint(24);
+
+        bytesToString(offset, buffer, bytes(n5));
+        offset -= sizeOfString(out5);
+
+        bytesToString(offset, buffer, bytes(n4));
+        offset -= sizeOfString(out4);
+
+        n1 = bytesToInt256(offset, buffer);
+
+    }
+    
+    function testSample2() public pure returns(int8 n1, int24 n2, uint32 n3, int128 n4, address n5, address n6) {
         
         bytes memory buffer = new bytes(64);
         int8    out1 = -12;
         int24   out2 = 838860;
-        uint32  out3 = 333333333;
+        uint32  out3 = 123;
         int128  out4 = -44444444444;
-        address out5 = 0x15B7926835A7C2FD6D297E3ADECC5B45F7309F59;
-        address out6 = 0x1CB5CF010E407AFC6249627BFD769D82D8DBBF71;
+        address out5 = 0x90c2EA76336410195498E76E28c80922Bb495B53;
+        address out6 = 0x313b1C7b270492214e011B7D36fde0Eb072A2798;
         
         // Serializing
         uint offset = 64;
@@ -87,124 +139,41 @@ contract SerialitySample is Seriality {
         n6 = bytesToAddress(offset, buffer);
 
     }
-}    
+}
+
 ```    
 ```
+testSample1 output:
+{
+	"0": "int256: n1 34444445",
+	"1": "int8: n2 87",
+	"2": "uint24: n3 76545",
+	"3": "string: n4 Copy kon lashi",
+	"4": "string: n5 Bia inja dahan service"
+}
 
-    output buffer:
-    
-	[1cb5cf010e407afc6249627bfd769d82d8dbbf7115b7926835a7c2fd6d297e3a
-	 decc5b45f7309f59fffffffffffffffffffffff5a6e798e413de43550cccccf4]
-
-
-    "1": "int8: 	n1 -12",
-    "2": "int24: 	n2 838860",
-    "3": "uint32: 	n3 85",
-    "4": "int128: 	n4 -44444444444",
-    "5": "address: 	n5 0x15b7926835a7c2fd6d297e3adecc5b45f7309f59",
-    "6": "address: 	n6 0x1cb5cf010e407afc6249627bfd769d82d8dbbf71"
+testSample2:
+{
+	"0": "int8: n1 -12",
+	"1": "int24: n2 838860",
+	"2": "uint32: n3 123",
+	"3": "int128: n4 -44444444444",
+	"4": "address: n5 0x90c2EA76336410195498E76E28c80922Bb495B53",
+	"5": "address: n6 0x313b1C7b270492214e011B7D36fde0Eb072A2798"
+}
 
 ```
 
 #### Serializing types including strings :
 
 ```js
-
-pragma solidity ^0.4.16;
-
-import "./Seriality.sol";
-
-contract SerialitySample is Seriality {
-    
-       function testSample1() public returns(int n1, int8 n2, uint24 n3, string n4,string n5) {
-        
-        bytes memory buffer = new  bytes(200);
-        string memory out4  = new string(32);        
-        string memory out5  = new string(32);
-        n4 = new string(32);
-        n5 = new string(32);
-        int     out1 = 34444445;
-        int8    out2 = 87;
-        uint24  out3 = 76545;
-        out4 = "Copy kon lashi";
-        out5 = "Bia inja dahan service";
-
-        // Serializing
-        uint offset = 200;
-
-        intToBytes(offset, out2, buffer);
-        offset -= sizeOfInt(8);
-
-        uintToBytes(offset, out3, buffer);
-        offset -= sizeOfUint(24);
-
-        stringToBytes(offset, bytes(out5), buffer);
-        offset -= sizeOfString(out5);
-
-        stringToBytes(offset, bytes(out4), buffer);
-        offset -= sizeOfString(out4);       
-
-        intToBytes(offset, out1, buffer);
-        offset -= sizeOfInt(256);
-        // Deserializing
-        offset = 200; 
-            
-        n2 = bytesToInt8(offset, buffer);
-        offset -= sizeOfInt(8);
-
-        n3 = bytesToUint24(offset, buffer);
-        offset -= sizeOfUint(24);
-
-        bytesToString(offset, buffer, bytes(n5));
-        offset -= sizeOfString(out5);
-
-        bytesToString(offset, buffer, bytes(n4));
-        offset -= sizeOfString(out4);
-
-        n1 = bytesToInt256(offset, buffer);
-    }
-}	
-
-```
-
-```
-output buffer :
-
-   [00000000000000000000000000000000000000000000000000000000020d949d
-    436f7079206b6f6e206c61736869000000000000000000000000000000000000
-    000000000000000000000000000000000000000000000000000000000000000e
-    42696120696e6a6120646168616e207365727669636500000000000000000000
-    0000000000000000000000000000000000000000000000000000000000000016
-    012b0157]
-
-
-    "1": "int256: n1 34444445"
-    "2": "int8:   n2 87"
-    "3": "uint24: n3 76545"
-    "4": "string: n4 Copy kon lashi"
-    "5": "string: n5 Bia inja dahan service"
-
-```
-
-
-
-
-
-
-
-
-
-#### Serializing strings and passing to another function
-
-```js
-
-pragma solidity ^0.4.16;
+pragma solidity ^0.5.0;
 
 import "./Seriality.sol";
 
 contract StringsReturn is Seriality {
   
-    function stringCaller() public returns(  string memory out1,
+    function stringCaller() public pure returns(  string memory out1,
                                             string memory out2,
                                             string memory out3,
                                             string memory out4,
@@ -236,7 +205,7 @@ contract StringsReturn is Seriality {
       
     }
     
-    function stringCallee(bytes memory buffer) public returns (uint buffer_size) {
+    function stringCallee(bytes memory buffer) public pure returns (uint buffer_size) {
     
         string memory out1  = new string(32); 
         string memory out2  = new string(32);        
@@ -274,8 +243,11 @@ contract StringsReturn is Seriality {
         stringToBytes(offset, bytes(out5), buffer);
         
         return buffer_size;
-    }    
+
+    }
+    
 }
+
 ```
 ```
 output buffer :

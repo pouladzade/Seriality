@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.5.0;
 
 /**
  * @title SizeOf
@@ -8,7 +8,7 @@ pragma solidity ^0.4.16;
 
 contract  SizeOf {
     
-    function sizeOfString(string _in) internal pure  returns(uint _size){
+    function sizeOfString(string memory _in) internal pure  returns(uint _size){
         _size = bytes(_in).length / 32;
          if(bytes(_in).length % 32 != 0) 
             _size++;

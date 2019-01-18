@@ -1,13 +1,13 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.5.0;
 
-import "./Seriality.sol";
+import {Seriality} from "./Seriality.sol";
 
 
 contract SerialitySample is Seriality {
 
-    function testSample1() public returns(int n1, int8 n2, uint24 n3, string n4,string n5) {
+    function testSample1() public pure returns(int n1, int8 n2, uint24 n3, string memory n4, string memory n5) {
         
-        bytes memory buffer = new  bytes(200);
+        bytes memory buffer = new bytes(200);
         string memory out4  = new string(32);        
         string memory out5  = new string(32);
         n4 = new string(32);
@@ -35,6 +35,7 @@ contract SerialitySample is Seriality {
 
         intToBytes(offset, out1, buffer);
         offset -= sizeOfInt(256);
+        
         // Deserializing
         offset = 200; 
             
@@ -51,17 +52,18 @@ contract SerialitySample is Seriality {
         offset -= sizeOfString(out4);
 
         n1 = bytesToInt256(offset, buffer);
+
     }
     
-    function testSample2() public returns(int8 n1, int24 n2, uint32 n3, int128 n4, address n5, address n6) {
+    function testSample2() public pure returns(int8 n1, int24 n2, uint32 n3, int128 n4, address n5, address n6) {
         
         bytes memory buffer = new bytes(64);
         int8    out1 = -12;
         int24   out2 = 838860;
-        uint32  out3 = 333333333;
+        uint32  out3 = 123;
         int128  out4 = -44444444444;
-        address out5 = 0x15B7926835A7C2FD6D297E3ADECC5B45F7309F59;
-        address out6 = 0x1CB5CF010E407AFC6249627BFD769D82D8DBBF71;
+        address out5 = 0x90c2EA76336410195498E76E28c80922Bb495B53;
+        address out6 = 0x313b1C7b270492214e011B7D36fde0Eb072A2798;
         
         // Serializing
         uint offset = 64;
@@ -102,5 +104,6 @@ contract SerialitySample is Seriality {
         offset -= sizeOfAddress();
         
         n6 = bytesToAddress(offset, buffer);
+
     }
 }

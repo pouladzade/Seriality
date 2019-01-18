@@ -1,10 +1,10 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.5.0;
 
 import "./Seriality.sol";
 
 contract StringsReturn is Seriality {
   
-    function stringCaller() public returns(  string memory out1,
+    function stringCaller() public pure returns(  string memory out1,
                                             string memory out2,
                                             string memory out3,
                                             string memory out4,
@@ -36,7 +36,7 @@ contract StringsReturn is Seriality {
       
     }
     
-    function stringCallee(bytes memory buffer) public returns (uint buffer_size) {
+    function stringCallee(bytes memory buffer) public pure returns (uint buffer_size) {
     
         string memory out1  = new string(32); 
         string memory out2  = new string(32);        

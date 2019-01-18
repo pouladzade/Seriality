@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.5.0;
 
 /**
  * @title BytesToTypes
@@ -40,12 +40,11 @@ contract BytesToTypes {
         }
     }
 
-    function bytesToString(uint _offst, bytes memory _input, bytes memory _output) internal  {
+    function bytesToString(uint _offst, bytes memory _input, bytes memory _output) internal pure {
 
         uint size = 32;
         assembly {
-            let loop_index:= 0
-                  
+            
             let chunk_count
             
             size := mload(add(_input,_offst))
@@ -54,15 +53,11 @@ contract BytesToTypes {
             if gt(mod(size,32),0) {
                 chunk_count := add(chunk_count,1)  // chunk_count++
             }
-                
-            
-            loop:
-                mstore(add(_output,mul(loop_index,32)),mload(add(_input,_offst)))
+               
+            for { let index:= 0 }  lt(index , chunk_count){ index := add(index,1) } {
+                mstore(add(_output,mul(index,32)),mload(add(_input,_offst)))
                 _offst := sub(_offst,32)           // _offst -= 32
-                loop_index := add(loop_index,1)
-                
-            jumpi(loop , lt(loop_index , chunk_count))
-            
+            }
         }
     }
 
