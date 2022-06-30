@@ -144,8 +144,8 @@ contract SerialitySample is Seriality {
 
 ```
 
-```
-testSample1 output:
+```bash
+// testSample1 output:
 {
  "0": "int256: n1 34444445",
  "1": "int8: n2 87",
@@ -154,7 +154,7 @@ testSample1 output:
  "4": "string: n5 Bia inja dahan service"
 }
 
-testSample2:
+// testSample2:
 {
  "0": "int8: n1 -12",
  "1": "int24: n2 838860",
@@ -252,8 +252,8 @@ contract StringsReturn is Seriality {
 
 ```
 
-```
-output buffer :
+```bash
+// output buffer :
 
    [42696120696e6a6120646168616e207365727669636500000000000000000000
     0000000000000000000000000000000000000000000000000000000000000016
