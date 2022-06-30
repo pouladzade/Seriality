@@ -1,4 +1,5 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.0;
 
 /**
  * @title Seriality
@@ -12,7 +13,5 @@ import "./SizeOf.sol";
 
 contract Seriality is BytesToTypes, TypesToBytes, SizeOf {
 
-    constructor() public {
-
-    }
+    constructor() {}
 }
