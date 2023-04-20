@@ -1,6 +1,7 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.0;
 
-import {Seriality} from "./Seriality.sol";
+import {Seriality} from "../src/Seriality.sol";
 
 
 contract SerialitySample is Seriality {

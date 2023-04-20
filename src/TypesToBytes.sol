@@ -1,4 +1,5 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.0;
 
 /**
  * @title TypesToBytes
@@ -8,7 +9,7 @@ pragma solidity ^0.5.0;
 
 contract TypesToBytes {
  
-    constructor() internal {
+    constructor() {
         
     }
     function addressToBytes(uint _offst, address _input, bytes memory _output) internal pure {
