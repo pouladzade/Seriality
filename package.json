@@ -1,0 +1,15 @@
+{
+  "name": "seriality",
+  "description": "Seriality is a library for serializing and de-serializing all the Solidity types in a very efficient way which mostly written in solidity-assembly.",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pouladzade/Seriality.git"
+  },
+  "author": "https://github.com/pouladzade",
+  "license": "Apache License 2.0",
+  "keywords": [
+    "ethereum",
+    "serialization"
+  ]
+}
